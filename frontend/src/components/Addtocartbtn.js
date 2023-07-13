@@ -6,8 +6,11 @@ import {
   LoadingAddtoCart,
 } from "../Store/cartSlice";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Addtocartbtn = ({ product }) => {
+  const notify = () => toast("Wow! Great Choice");
+
   const dispatch = useDispatch();
   const [status, setStatus] = useState(false);
 
@@ -21,6 +24,7 @@ const Addtocartbtn = ({ product }) => {
         oneQuantityPrice: product.data.attributes.price,
       })
     );
+    notify();
   };
 
   const checkstatus = () => {

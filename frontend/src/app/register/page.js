@@ -2,7 +2,11 @@
 import { useState } from "react";
 import axios from "axios";
 import { Api_Url } from "../../../utils/url";
+import { toast } from "react-toastify";
+
 const Register = () => {
+  const notify = () => toast("Wow! Great Registered Successfully");
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,6 +19,7 @@ const Register = () => {
       password,
     });
     console.log(user);
+    notify();
   };
 
   return (

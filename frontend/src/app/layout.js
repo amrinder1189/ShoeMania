@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Header from "@/components/header";
 const inter = Inter({ subsets: ["latin"] });
 import CartProvider from "../Store/cartProvider";
+import Footer from "../components/Footer";
 
 export const metadata = {
   title: "Create Next App",
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
         <CartProvider>
           <Header />
           {children}
+          <Footer />
         </CartProvider>
       </body>
     </html>

@@ -9,8 +9,8 @@ const Menu = () => {
   const data = [
     { id: 1, name: "Home", url: "/" },
     { id: 2, name: "About", url: "/about" },
-    { id: 3, name: "Categories", subMenu: true },
-    { id: 4, name: "Contact", url: "/contact" },
+    // { id: 3, name: "Categories", subMenu: false },
+    { id: 3, name: "My orders", url: "/myorders" },
   ];
 
   const subMenuData = [
@@ -22,17 +22,17 @@ const Menu = () => {
 
   return (
     <div>
-      <ol className="flex  w-130 z-50 ">
+      <ol className="flex  w-22 z-50     ">
         {data?.map((item) => {
           return item.subMenu ? (
             <Fragment>
               <li
                 key={item.id}
-                className="m-2  relative "
+                className="m-0 sm:m-2  relative "
                 onMouseEnter={() => setshowsubmenu(!showsubMenu)}
                 onMouseLeave={() => setshowsubmenu(!showsubMenu)}
               >
-                <span className="flex items-center z-50">
+                <span className="flex items-center text-xs mt-3.5 sm:mt-0  z-50 md:text-xs  ">
                   {item.name}
                   <AiOutlineCaretDown />
                 </span>
@@ -42,7 +42,7 @@ const Menu = () => {
                       {item?.subMenu
                         ? subMenuData.map((ite) => (
                             <p
-                              className="bg-white p-2 hover:bg-black hover:text-white  cursor-pointer text-sm	 "
+                              className="bg-white p-2 hover:bg-black hover:text-white  cursor-pointer text-sm md:text-xs	 "
                               key={ite.id}
                             >
                               {ite.name}
@@ -55,7 +55,10 @@ const Menu = () => {
               </li>
             </Fragment>
           ) : (
-            <li key={item.id} className="m-2  flex items-center">
+            <li
+              key={item.id}
+              className="m-2  flex items-center text-xs lg:text-xs "
+            >
               <Link href={item.url}>{item.name}</Link>
               {item?.subMenu ? <AiOutlineCaretDown className="" /> : null}
             </li>

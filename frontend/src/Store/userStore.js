@@ -16,8 +16,27 @@ export const userSlice = createSlice({
     },
     LoadedUser: (state, action) => {
       state.user = action.payload;
+
+      localStorage.setItem("user", JSON.stringify(state.user));
+
       state.isLoading = false;
       state.isAuth = true;
+    },
+    UpdatingUser: (state, action) => {
+      state.user = action.payload;
+
+      localStorage.setItem("user", JSON.stringify(state.user));
+
+      state.isLoading = false;
+      state.isAuth = true;
+    },
+    LogoutUser: (state, action) => {
+      state.user = {};
+
+      localStorage.removeItem("user");
+
+      state.isLoading = false;
+      state.isAuth = false;
     },
     LoadeduserError: (state, action) => {
       state.isError = action.payload;
@@ -27,6 +46,12 @@ export const userSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { Loadinguser, LoadedUser, LoadeduserError } = userSlice.actions;
+export const {
+  Loadinguser,
+  LogoutUser,
+  UpdatingUser,
+  LoadedUser,
+  LoadeduserError,
+} = userSlice.actions;
 
 export default userSlice.reducer;

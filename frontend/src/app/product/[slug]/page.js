@@ -14,11 +14,11 @@ const Product = async ({ params: { slug } }) => {
 
   console.log(slug, "param param");
   return (
-    <div className="flex">
-      <div className="flex-1  flex justify-start	">
+    <div className="flex flex-col sm:flex-row">
+      <div className="flex-1  flex justify-center sm:justify-start  	">
         <ProductCrousal images={data.data.attributes.image.data} />
       </div>
-      <div className="flex-1 flex flex-col justify-center items-start  h-screen">
+      <div className="flex-1 flex flex-col justify-center items-start  h-screen  ">
         <h3 className=" text-4xl font-bold  ">{data.data.attributes.name}</h3>
         <h4 className="text-lg  mb-2">{data.data.attributes.subtitle}</h4>
         <div className="flex  w-96 justify-between">

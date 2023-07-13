@@ -13,6 +13,7 @@ const stripePromise = loadStripe(
 const CartPage = () => {
   const dispatch = useDispatch();
   const { isLoading, cart } = useSelector((state) => state.cart);
+  const { isAuth } = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
 
   const deletehandler = (product) => {
@@ -46,7 +47,7 @@ const CartPage = () => {
   return (
     <div className="">
       <h1 className="text-4xl font-bold  text-center">Shooping Cart</h1>
-      <div className="flex mt-7 ">
+      <div className="flex mt-7 flex-col sm:flex-row md:flex-row ">
         <div className="flex-1 border flex p-2 m-2 rounded-xl ">
           <div className="flex border flex-col w-full rounded-xl ">
             {cart?.length ? (
@@ -68,6 +69,7 @@ const CartPage = () => {
                     <p className="text-sm font-semibold">
                       MRP. {item.product.data.attributes.price}
                     </p>
+
                     <div>Size</div>
                     <div>Quanity : {item.quantity} </div>
                     <AiFillDelete onClick={() => deletehandler(item)} />
@@ -89,12 +91,18 @@ const CartPage = () => {
             duties and taxes, before any applicable discounts. It does not
             include delivery costs and international transaction fees.
           </h2>
-          <button
-            className="btn btn-dark border rounded-lg p-2 w-52 bg-black text-white"
-            onClick={handlePayment}
-          >
-            CheckOut
-          </button>
+          {isAuth ? (
+            <button
+              className="btn btn-dark border rounded-lg p-2 w-52 bg-black text-white"
+              onClick={handlePayment}
+            >
+              CheckOut
+            </button>
+          ) : (
+            <p className="border text-center bg-red-400 rounded-lg">
+              You Need to Login First to checkout
+            </p>
+          )}
         </div>
       </div>
     </div>

@@ -14,10 +14,6 @@ export const cartSlice = createSlice({
       state.isLoading = true;
     },
     LoadedAddtoCart: (state, action) => {
-      // -----------------------------
-
-      // -----------------------------
-
       const item = state.cart.find(
         (p) => p.product.data.id === action.payload.product.data.id
       );
@@ -32,12 +28,13 @@ export const cartSlice = createSlice({
         state.cart.push({ ...action.payload, quantity: 1 });
       }
 
-      // console.log(state.cart, "cart");
-      // console.log(item, "item");
-      // console.log(action.payload, "payload");
-
       localStorage.setItem("cart", JSON.stringify(state.cart));
 
+      state.isLoading = false;
+    },
+    emptyCart: (state, action) => {
+      state.cart = [];
+      localStorage.removeItem("cart");
       state.isLoading = false;
     },
     LoadedAddtoCartFirstTime: (state, action) => {
@@ -67,6 +64,7 @@ export const {
   LoadingAddtoCart,
   LoadedAddtoCartFirstTime,
   removeItemInCart,
+  emptyCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
